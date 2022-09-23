@@ -1,0 +1,16 @@
+h1,
+h2 {
+  text-align: center;
+}
+
+#chart-frame {
+  margin: auto;
+  max-width: 50%;
+  border: 3px solid;
+  padding: 10px;
+  display: block;
+}
+
+#chart-frame p {
+  display: inline;
+}
