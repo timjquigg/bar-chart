@@ -1,13 +1,15 @@
-const data = [{ a: 1 }, { b: 3 }, { c: 2 }, { d: 6 }, { e: 8 }, { f: 10 }];
+const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 const addBar = function (data) {
+  const max = Math.max(...data)
   for (const el of data) {
-    let newElement = $("<p></p>");
-    newElement.text(Object.keys(el));
-    newElement.attr("id", Object.keys(el));
-    newElement.css("height", Object.values(el) + "em");
-
-    $("#chart-frame").append(newElement);
+    let newDiv = $("<div></div>");
+    newDiv.addClass("bar");
+    newDiv.css("height", (el / max * 75) + "%");
+    let newP = $("<p></p>");
+    newP.text(el);
+    newDiv.append(newP);
+    $("#chart-frame").append(newDiv);
   }
 }
 

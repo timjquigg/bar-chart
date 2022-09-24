@@ -9,12 +9,26 @@ h2 {
   border: 3px solid;
   padding: 10px;
   position: relative;
+  height: 300px;
 }
 
-#chart-frame p {
-  display: inline-block;
-  border: 3px solid blue;
-  margin: 0.5em;
+.bar {
+
+  background-color: blue;
+  margin: 0.25em;
   margin-top: auto;
   text-align: center;
+  width: 3em;
+  display: flex;
+  align-items: center;
+
+}
+
+.bar p {
+  display: inline;
+  vertical-align: middle;
+  margin: auto;
+  width: auto;
+  padding: 0.125em;
+  background-color: white;
 }
