@@ -1,8 +1,13 @@
-const data = [1, 3, 2, 6, 8, 10];
+const data = [{ a: 1 }, { b: 3 }, { c: 2 }, { d: 6 }, { e: 8 }, { f: 10 }];
 
 const addBar = function (data) {
-  for (let el of data) {
-    $("#chart-frame").append($("<p></p>").text(el));
+  for (const el of data) {
+    let newElement = $("<p></p>");
+    newElement.text(Object.keys(el));
+    newElement.attr("id", Object.keys(el));
+    newElement.css("height", Object.values(el) + "em");
+
+    $("#chart-frame").append(newElement);
   }
 }
 
