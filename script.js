@@ -1,6 +1,7 @@
 const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const chartFrame = "chart-frame";
 
-const addBar = function (data) {
+const drawBarChart = function (data, options, element) {
   const max = Math.max(...data)
   for (const el of data) {
     let newDiv = $("<div></div>");
@@ -9,10 +10,10 @@ const addBar = function (data) {
     let newP = $("<p></p>");
     newP.text(el);
     newDiv.append(newP);
-    $("#chart-frame").append(newDiv);
+    $('#' + element).append(newDiv);
   }
 }
 
 $(function () {
-  addBar(data);
+  drawBarChart(data, null, chartFrame);
 });
