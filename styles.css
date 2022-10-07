@@ -1,31 +1,3 @@
-h1,
-h2 {
+body {
   text-align: center;
-}
-
-#chart-frame {
-  display: inline-flex;
-  flex-direction: row;
-  border: 3px solid;
-  padding: 10px;
-  position: relative;
-  height: 300px;
-  width: 400px;
-}
-
-.bar {
-  background-color: rgb(34, 120, 178);
-  margin: 0.25em;
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.bar p {
-  display: inline-block;
-  text-align: center;
-  margin: 0.25em;
-  width: auto;
-  padding: 0em;
 }
