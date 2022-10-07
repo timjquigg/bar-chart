@@ -10,25 +10,22 @@ h2 {
   padding: 10px;
   position: relative;
   height: 300px;
+  width: 400px;
 }
 
 .bar {
-
-  background-color: blue;
+  background-color: rgb(34, 120, 178);
   margin: 0.25em;
   margin-top: auto;
-  text-align: center;
-  width: 3em;
   display: flex;
-  align-items: center;
-
+  flex-direction: column;
+  justify-content: center;
 }
 
 .bar p {
-  display: inline;
-  vertical-align: middle;
-  margin: auto;
+  display: inline-block;
+  text-align: center;
+  margin: 0.25em;
   width: auto;
-  padding: 0.125em;
-  background-color: white;
+  padding: 0em;
 }
