@@ -8,7 +8,6 @@ const defaultStyleOptions = {
     'height': '100%',
     'width': '100%',
     'margin-left': '-0.2em',
-    //'padding-left': '0.2em',
   },
   'chart': {
     'width': '100%',
@@ -29,29 +28,42 @@ const defaultStyleOptions = {
   },
   'y-axis': {
     'height': '90%',
+    'width': '10%',
     'border-right-style': 'solid',
     'display': 'inline-flex',
     'flex-direction': 'column',
     'justify-content': 'center',
+    'flex-wrap': 'wrap',
   },
   'y-axis-title': {
+    'width': '50%',
     'transform': 'rotate(-90deg)',
+    'text-align': 'center',
+  },
+  'break': {
+    'flex-basis': '100%',
+    'height': 0,
   },
   'tick': {
-    'height': '10%',
+    'margin': 'auto',
   },
   'x-axis': {
-    'clear': 'both',
+    //'clear': 'both',
     'display': 'inline-flex', //do not change
     'flex-direction': 'row', //do not change
     'height': '10%', //do not change
     'width': '100%',
     'border-top-style': 'solid',
+    'flex-wrap': 'wrap',
+    'margin': '0',
   },
   'x-axis-labels': {
-    'display': 'flex',
-    'flex-direction': 'column',
+    'height': '40%',
   },
+  'x-axis-title': {
+    'width': '100%',
+    'height': '50%',
+  }
 
 }
 
@@ -67,15 +79,22 @@ export const drawBarChart = function (data, options, element) {
   yAxis.addClass('y-axis')
   let yAxisTitle = $("<h2></h2>");
   yAxisTitle.addClass('y-axis-title');
-  yAxisTitle.text('Age');
+  yAxisTitle.text(options['axis']['y-axis']['title']);
   yAxis.append(yAxisTitle);
-  /*
-    for (let i = 0; i <= 90; i += 10) {
-      let newTick = $("<div></div>");
-      newTick.addClass('tick');
-      yAxis.append(newTick);
-    }
-  */
+  let lineBreak = $("<div></div>");
+  lineBreak.addClass('break');
+  yAxis.append(lineBreak);
+  let interval = options['axis']['y-axis']['tick-intervals']
+  let maxTick = Math.ceil(max / interval) * 10;
+
+  for (let i = maxTick; i >= 1; i -= interval) {
+    let newTick = $("<div></div>");
+    //newTick.css('height', (interval) / maxTick * 100) + '%')
+    newTick.addClass('tick');
+    newTick.append(`<p>${i}</p>`)
+    yAxis.append(newTick);
+  }
+
   // Creates container for the bars
   const graph = $('<div></div>');
   graph.addClass('chart');
@@ -112,10 +131,16 @@ export const drawBarChart = function (data, options, element) {
     xAxis.append(newDiv);
   }
 
+  let xAsixTitle = $("<h2></h2>");
+  xAsixTitle.addClass('x-axis-title');
+  xAsixTitle.text(options['axis']['x-axis']['title']);
+  xAxis.append(xAsixTitle);
+
   let barsAndXAxis = $("<div></div>");
   barsAndXAxis.addClass('bars-x-axis');
   barsAndXAxis.append(graph);
   barsAndXAxis.append(xAxis);
+
 
   // Adds the styling class to the chart frame
   $('#' + element).addClass('chart-frame');
@@ -132,17 +157,18 @@ export const drawBarChart = function (data, options, element) {
   }
 
   // Change styling based on options parameter
-  for (let className in options) {
-    for (let key in options[className]) {
-      $("." + className).css(options[className], options[className][key]);
+  for (let className in options['styles']) {
+    for (let key in options['styles'][className]) {
+      $("." + className).css(options['styles'][className], options['styles'][className][key]);
     }
   }
   // Centers the chart
-  $('.chart').css('margin-left', options['bar']['margin']);
+  $('.chart').css('margin-left', options['styles']['bar']['margin']);
+  $('.y-axis').css('margin-bottom', options['styles']['bar']['margin']);
 
   // The below makes sure that the label widths match the bar widths
-  $('.x-axis').css('width', options['chart']['width']);
-  $('.x-axis').css('margin', options['bar']['margin']);
+  $('.x-axis').css('width', options['styles']['chart']['width']);
+  $('.x-axis').css('margin', options['styles']['bar']['margin']);
 
   // The below is to make the graphs start from the bottom
   $(".bar").css('margin-top', 'auto');

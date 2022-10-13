@@ -5,33 +5,42 @@ const data = [
   { Deb: 59 },
   { Tim: 38 },
   { Chelsea: 37 },
-  { Kieran: 3 }
+  { Kieran: 3 },
+  { Roxy: 1 },
 ]
 
 const chartFrame = "chart-frame";
 
 const styleOptions = {
-  'chart-frame': {
-    'border': '3px solid',
-    'padding': '1em',
-    'height': '40vh',
-    'width': '60vh',
+  'styles': {
+    'chart-frame': {
+      'border': '3px solid',
+      'padding': '1em',
+      'height': '40vh',
+      'width': '60vh',
+      'margin': 'auto',
+    },
+    'bar': {
+      'background-color': 'rgb(34, 120, 178)', //Change background color
+      'margin': '0.25em', //Change bar spacing
+      'justify-content': 'center', //Flex-start - Top, Flex-end - Bottom, center - center
+      'margin-top': 'auto'
+    },
+    'value': {
+      'color': 'orange',
+    },
+    'x-axis-labels': {
+      'color': 'orange'
+    },
   },
-  /*'bars-x-axis': {
-    'height': '40vh',
-    'width': '60vh'
-  },
-  */'bar': {
-    'background-color': 'rgb(34, 120, 178)', //Change background color
-    'margin': '0.25em', //Change bar spacing
-    'justify-content': 'center', //Flex-start - Top, Flex-end - Bottom, center - center
-    'margin-top': 'auto'
-  },
-  'value': {
-    'color': 'orange',
-  },
-  'x-axis-labels': {
-    'color': 'orange'
+  'axis': {
+    'x-axis': {
+      'title': 'Name',
+    },
+    'y-axis': {
+      'title': 'Age',
+      'tick-intervals': 10,
+    }
   }
 }
 
